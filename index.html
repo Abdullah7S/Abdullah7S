@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحويل ملف إلى Data URL</title>
+</head>
+<body>
+
+<input type="file" id="fileInput" />
+<button id="convertButton">تحويل إلى Data URL</button>
+<pre id="result"></pre>
+
+<script>
+    document.getElementById('convertButton').addEventListener('click', function() {
+        const fileInput = document.getElementById('fileInput');
+        const file = fileInput.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onloadend = function() {
+                const dataURL = reader.result;
+                document.getElementById('result').textContent = dataURL;
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            alert('يرجى اختيار ملف.');
+        }
+    });
+</script>
+
+</body>
+</html>
